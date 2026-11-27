@@ -1453,6 +1453,247 @@ html:not(.js) .nav__list {
   padding-top: 1.5rem;
 }
 
+/* ---------- Illustrations: one outline language, see MASTER.md "Illustrations" ---------- */
+
+.ill {
+  --ill-line: var(--color-ink);
+  --ill-soft: var(--color-text-2);
+  --ill-acc-line: var(--color-ink);
+  --ill-fill: var(--color-paper);
+  --ill-card: var(--color-white);
+  --ill-acc: var(--color-lime);
+  --ill-mark: var(--color-ink);
+  --ill-dot: var(--color-hairline);
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+/* On dark surfaces lines turn white and lime may be used as a line */
+.section--dark .ill,
+.statement .ill {
+  --ill-line: var(--color-white);
+  --ill-soft: var(--color-text-2-dark);
+  --ill-acc-line: var(--color-lime);
+  --ill-fill: var(--color-ink);
+  --ill-card: var(--color-ink-raised);
+  --ill-mark: var(--color-lime);
+  --ill-dot: rgba(255, 255, 255, 0.16);
+}
+
+/* On the lime card a lime fill would vanish: surfaces and accents turn white */
+.product--ready .ill {
+  --ill-fill: var(--color-white);
+  --ill-acc: var(--color-white);
+}
+
+/* Class names are global (not scoped to .ill) so they also style <use> clones of symbols */
+.i-ln,
+.i-mu,
+.i-sa {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.i-ln {
+  stroke: var(--ill-line);
+}
+
+.i-mu {
+  stroke: var(--ill-soft);
+}
+
+.i-sa {
+  stroke: var(--ill-acc-line);
+}
+
+.i-da {
+  stroke-dasharray: 4 5;
+}
+
+/* Cassette perforations: wide rounded strokes that scale with the drawing */
+.i-sl {
+  fill: none;
+  stroke: var(--ill-dot);
+  stroke-linecap: round;
+}
+
+.i-fp {
+  fill: var(--ill-fill);
+}
+
+.i-fw {
+  fill: var(--ill-card);
+}
+
+.i-fa {
+  fill: var(--ill-acc);
+}
+
+.i-fm {
+  fill: var(--ill-mark);
+}
+
+.i-fd {
+  fill: var(--ill-dot);
+}
+
+/* Spot illustrations next to a number badge or chip */
+.card__head,
+.product__top,
+.flow__head,
+.timeline__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  align-self: stretch;
+  margin-bottom: 1.5rem;
+}
+
+.card__head .card__num,
+.flow__head .flow__num,
+.product__top .chip,
+.timeline__head .timeline__year {
+  margin-bottom: 0;
+}
+
+.product__top {
+  align-items: flex-start;
+  margin-bottom: 1.75rem;
+}
+
+.timeline__head {
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.timeline__head .timeline__year {
+  white-space: nowrap;
+}
+
+.timeline__head .ill--icon {
+  height: 3rem;
+}
+
+.ill--spot {
+  width: auto;
+  height: 4rem;
+}
+
+.ill--pict {
+  width: auto;
+  height: 4.5rem;
+}
+
+.ill--icon {
+  width: auto;
+  height: 3.5rem;
+}
+
+/* Feature cards with a pictogram instead of the lime square bullet */
+.feature__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature__head h3 {
+  margin-bottom: 0;
+}
+
+.feature--ill h3::before {
+  display: none;
+}
+
+/* Larger schematics */
+.schematic {
+  grid-column: 1 / -1;
+}
+
+.schematic svg,
+.ill-panel svg {
+  width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+.schematic svg {
+  max-width: 50rem;
+}
+
+.schematic,
+.ill-panel {
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+}
+
+.ill-panel--ai {
+  margin-top: var(--space-lg);
+}
+
+.ill-panel--ai svg {
+  max-width: 50rem;
+}
+
+.cassette-story {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.ill-panel--mould svg {
+  max-width: 34rem;
+}
+
+/* Why Serbia: abstract motif, no map */
+.motif {
+  overflow: hidden;
+  margin-bottom: var(--bento-gap);
+  border: 1px solid var(--color-hairline-dark);
+  border-radius: var(--radius-card);
+  background: var(--color-ink-raised);
+}
+
+.motif svg {
+  width: 100%;
+  height: clamp(6.5rem, 14vw, 12.5rem);
+}
+
+.statement__ill {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .statement--ill {
+    padding-right: calc(clamp(1.75rem, 4vw, 3rem) + 9.5rem);
+  }
+
+  .statement__ill {
+    position: absolute;
+    top: 50%;
+    right: clamp(1.75rem, 4vw, 3rem);
+    display: block;
+    width: auto;
+    height: 5rem;
+    transform: translateY(-50%);
+  }
+}
+
+@media (min-width: 62rem) {
+  .ill--spot {
+    height: 5.5rem;
+  }
+
+  .ill--pict {
+    height: 6.5rem;
+  }
+}
+
 /* ---------- Scroll reveal (only with JS and when motion is allowed) ---------- */
 
 @media (prefers-reduced-motion: no-preference) {
