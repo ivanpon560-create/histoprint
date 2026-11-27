@@ -590,27 +590,35 @@ html:not(.js) .nav__list {
   margin-top: 2rem;
 }
 
+/* Phones: one card with a row per fact. Three tiles side by side would be so narrow
+   that every label breaks into three lines; the tiles start at 40rem (see below). */
 .hero__facts {
+  overflow: hidden;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.625rem;
   margin-top: 2.5rem;
-}
-
-/* dt is the label and dd the value; the value is shown first */
-.hero__facts div {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-  padding: 1rem;
   border: 1px solid var(--color-hairline-dark);
   border-radius: var(--radius-md);
   background: var(--color-ink-raised);
 }
 
+/* dt is the label and dd the value; the value is shown first */
+.hero__facts div {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.hero__facts div + div {
+  border-top: 1px solid var(--color-hairline-dark);
+}
+
 .hero__facts dd {
+  min-width: 1.75rem;
   font-family: var(--font-heading);
-  font-size: clamp(2.25rem, 2.4vw + 1.25rem, 3.25rem);
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -618,8 +626,7 @@ html:not(.js) .nav__list {
 }
 
 .hero__facts dt {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.35;
   color: var(--color-text-2-dark);
 }
@@ -1460,6 +1467,30 @@ html:not(.js) .nav__list {
 
 /* ---------- Footer ---------- */
 
+/* ---------- Page not found (404.html) ---------- */
+
+.not-found {
+  display: grid;
+  align-items: center;
+  /* Fills the screen under the header (its height plus the 1px border) */
+  min-height: calc(100vh - var(--header-height) - 1px);
+  min-height: calc(100svh - var(--header-height) - 1px);
+}
+
+.not-found h1 {
+  max-width: none;
+}
+
+.not-found__code {
+  margin-bottom: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: clamp(5rem, 22vw, 11rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--color-lime);
+}
+
 .site-footer {
   padding-block: var(--space-xl);
   background: var(--color-ink);
@@ -1845,8 +1876,34 @@ html:not(.js) .nav__list {
     left: -1rem;
   }
 
-  .hero__facts div {
+  .hero__facts {
+    overflow: visible;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.625rem;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .hero__facts div,
+  .hero__facts div + div {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 0;
     padding: 1.25rem;
+    border: 1px solid var(--color-hairline-dark);
+    border-radius: var(--radius-md);
+    background: var(--color-ink-raised);
+  }
+
+  .hero__facts dd {
+    min-width: 0;
+    font-size: clamp(2.25rem, 2.4vw + 1.25rem, 3.25rem);
+  }
+
+  .hero__facts dt {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
   }
 }
 
