@@ -71,6 +71,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + 0.5rem);
   -webkit-text-size-adjust: 100%;
+  /* Shown when the page is pulled past its top or bottom edge: both ends are dark */
+  background: var(--color-ink);
 }
 
 body {
@@ -291,6 +293,19 @@ h3 {
   background: var(--color-ink);
   border-bottom: 1px solid var(--color-hairline-dark);
   --focus-ring: var(--color-lime);
+}
+
+/* Phone browsers draw the page under the status bar while the header sticks below it:
+   carry the header colour upwards so no page text shows through that strip. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 12.5rem;
+  background: var(--color-ink);
+  pointer-events: none;
 }
 
 .site-header__bar {
