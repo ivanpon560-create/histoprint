@@ -1148,6 +1148,56 @@ html:not(.js) .nav__list {
   letter-spacing: -0.02em;
 }
 
+/* Cassette photos: one wide photo and two studio shots on white */
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--bento-gap);
+  margin-bottom: var(--bento-gap);
+}
+
+.shot {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  /* Definite tracks, so the photo can take 100% of the tile height */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  height: 15rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-card);
+  background: var(--color-card);
+}
+
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.shot--wide {
+  grid-column: 1 / -1;
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
+
+.shot--wide img {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  /* Keeps the lid and the marked face in frame when the tile is wider than the photo */
+  object-position: 50% 30%;
+}
+
+/* Top left of the photo is bare table: the label covers nothing there */
+.shot__caption {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  margin-top: 0;
+}
+
 /* Cassette illustration */
 
 .cassette-figure {
@@ -1722,6 +1772,14 @@ html:not(.js) .nav__list {
 /* ---------- Breakpoints ---------- */
 
 @media (min-width: 40rem) {
+  .shot {
+    height: 20rem;
+  }
+
+  .shot--wide {
+    height: auto;
+  }
+
   :root {
     --gutter: 1.5rem;
     --bento-gap: 1.25rem;
@@ -1795,6 +1853,20 @@ html:not(.js) .nav__list {
 @media (min-width: 62rem) {
   :root {
     --header-height: 4.5rem;
+  }
+
+  .shots {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+
+  .shot,
+  .shot--wide {
+    height: 26rem;
+  }
+
+  .shot--wide {
+    grid-column: auto;
+    aspect-ratio: auto;
   }
 
   .section {
